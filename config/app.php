@@ -194,13 +194,15 @@ return [
         App\Infrastructure\Providers\AppServiceProvider::class,
         App\Infrastructure\Providers\AuthServiceProvider::class,
         // App\Infrastructure\Providers\BroadcastServiceProvider::class,
-        App\Infrastructure\Providers\EventServiceProvider::class,
+//        App\Infrastructure\Providers\EventServiceProvider::class,
         App\Infrastructure\Providers\RouteServiceProvider::class,
 
         /*
          * Modules Service Providers
          */
         App\Modules\Approval\Infrastructure\Providers\ApprovalsServiceProvider::class,
+        App\Modules\Invoices\Infrastructure\Providers\InvoiceServiceProvider::class,
+        App\Modules\Invoices\Infrastructure\Providers\InvoiceEventServiceProvider::class,
     ],
 
     /*

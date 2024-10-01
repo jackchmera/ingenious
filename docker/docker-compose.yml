@@ -147,7 +147,7 @@ services:
         - "${WORKSPACE_SSH_PORT}:22"
         - "${WORKSPACE_BROWSERSYNC_HOST_PORT}:3000"
         - "${WORKSPACE_BROWSERSYNC_UI_HOST_PORT}:3001"
-        - "${WORKSPACE_VUE_CLI_SERVE_HOST_PORT}:8080"
+        - "${WORKSPACE_VUE_CLI_SERVE_HOST_PORT}:8081"
         - "${WORKSPACE_VUE_CLI_UI_HOST_PORT}:8000"
         - "${WORKSPACE_ANGULAR_CLI_SERVE_HOST_PORT}:4200"
         - "${WORKSPACE_VITE_PORT}:5173"
@@ -315,7 +315,8 @@ services:
         - ${DATA_PATH_HOST}/mariadb/ingenious:/var/lib/mysql
         - ${MARIADB_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
       ports:
-        - "${MARIADB_PORT}:3306"
+#        - "3307:3306"
+        - "${MARIADB_PORT}:3307"
       environment:
         - TZ=${WORKSPACE_TIMEZONE}
         - MYSQL_DATABASE=${MARIADB_DATABASE}

@@ -1,8 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Infrastructure\Exceptions;
 
+use App\Modules\Invoices\Domain\Exceptions\InvoiceInvalidValueException;
+use App\Modules\Invoices\Domain\Exceptions\InvoiceNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
+use LogicException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -39,12 +46,28 @@ class Handler extends ExceptionHandler
     /**
      * Register the exception handling callbacks for the application.
      *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
-        $this->reportable(function (Throwable $e) {
+        $this->reportable(function (Throwable $e): void {
             //
         });
+    }
+
+    public function render($request, Throwable $e): JsonResponse
+    {
+        if ($e instanceof LogicException) {
+            return \response()->json(['error' => $e->getMessage()], Response::HTTP_CONFLICT);
+        }
+
+        if ($e instanceof InvoiceNotFoundException) {
+            return \response()->json(['error' => $e->getMessage()], Response::HTTP_NOT_FOUND);
+        }
+
+        if ($e instanceof InvoiceInvalidValueException) {
+            return \response()->json(['error' => $e->getMessage()], Response::HTTP_BAD_REQUEST);
+        }
+
+        return parent::render($request, $e);
     }
 }
