@@ -33,6 +33,14 @@ If this could affect the evaluation, I would be happy to complete this task.
 
 In practice, different approaches to implementing DDD are used. I tried to stay as close as possible to what I observed in the provided repository.
 
+### 6. Sample endpoints
+GET /api/invoices/0789ac36-9685-4e1d-b715-24bdaa10a748
+
+GET /api/invoices/0789ac36-9685-4e1d-b715-24bdaa10a748/approve
+
+GET /api/invoices/f6e56048-0d3c-45b5-aa2a-ac70bc65dcbc/reject
+
+-----------------
 
 # Recruitment Task 🧑‍💻👩‍💻
 
